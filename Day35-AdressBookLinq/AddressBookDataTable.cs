@@ -27,6 +27,6 @@ namespace Day35_AdressBookLinq
             var taleColumn8 = new DataColumn("Email");
             dataTable.Columns.Add(taleColumn8);
             return dataTable;
-        }
+        } 
     }
 }
