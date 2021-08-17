@@ -6,10 +6,10 @@ using System.Text;
 
 namespace Day35_AdressBookLinq 
 {
-    class AddressBookDataTable 
+    class AddressBookDataTable
     {
         public readonly DataTable dataTable = new DataTable();
-        public DataTable CreateTable(AddrssBookModel model)
+        public DataTable CreateTable(AddressBookModel model)
         {
             var taleColumn1 = new DataColumn("First_Name");
             dataTable.Columns.Add(taleColumn1);
@@ -27,6 +27,10 @@ namespace Day35_AdressBookLinq
             dataTable.Columns.Add(taleColumn7);
             var taleColumn8 = new DataColumn("Email");
             dataTable.Columns.Add(taleColumn8);
+            var tableColumn9 = new DataColumn("BookName");
+            dataTable.Columns.Add(tableColumn9);
+            var tableColumn10 = new DataColumn("BookType");
+            dataTable.Columns.Add(tableColumn10);
 
             dataTable.Rows.Add("Pooja", "Reddy", "Lkdkr", "shimoga", "kA", "577201", "9888042243", "reddy@gmail.com");
             dataTable.Rows.Add("Shobha", "Reddy", "hyd", "Gunturu", "AP", "526321", "6547890567", "st@gmail.com");
@@ -36,13 +40,13 @@ namespace Day35_AdressBookLinq
             dataTable.Rows.Add("Ganesh", "Reddy", "vesarpadi", "Chennai", "TamilNadu", "600341", "97456321011", "reddy@gmail.com");
             return dataTable;
         }
-        public void AddContact(AddrssBookModel model) 
+        public void AddContact(AddressBookModel model)
         {
             dataTable.Rows.Add(model.First_Name, model.Last_Name, model.Address, model.City,
                 model.State, model.Zip, model.Phone_Number, model.Email);
             Console.WriteLine("Contact Added Succesfully...");
         }
-        public void EditContact(AddrssBookModel model)
+        public void EditContact(AddressBookModel model)
         {
             var recordData = dataTable.AsEnumerable().Where(data => data.Field<string>("First_Name") == model.First_Name).First();
             if (recordData != null)
@@ -56,20 +60,11 @@ namespace Day35_AdressBookLinq
                 recordData.SetField("Email", model.Email);
             }
         }
-        public void DeleteContact(AddrssBookModel model)
-        {
-            var recordData = dataTable.AsEnumerable().Where(data => data.Field<string>("First_Name") == model.First_Name).First();
-            if (recordData != null)
-            {
-                recordData.Delete();
-                Console.WriteLine("Contact Deleted Successfully...."); 
-            }
-        }
         public void Display()
         {
             foreach (var table in dataTable.AsEnumerable())
             {
-                Console.WriteLine("\nFirstName: " + table.Field<string>("First_Name"));
+                Console.WriteLine("\nFirstName: " + table.Field<string>("First_Name")); 
                 Console.WriteLine("LastName: " + table.Field<string>("Last_Name"));
                 Console.WriteLine("Address: " + table.Field<string>("Address"));
                 Console.WriteLine("City: " + table.Field<string>("City"));
@@ -79,7 +74,16 @@ namespace Day35_AdressBookLinq
                 Console.WriteLine("E-mail: " + table.Field<string>("Email"));
             }
         }
-        public void RetrievePersonByUsingState(AddrssBookModel model)
+        public void DeleteContact(AddressBookModel model)
+        {
+            var recordData = dataTable.AsEnumerable().Where(data => data.Field<string>("First_Name") == model.First_Name).First();
+            if (recordData != null)
+            {
+                recordData.Delete();
+                Console.WriteLine("Contact Deleted Successfully....");
+            }
+        }
+        public void RetrievePersonByUsingState(AddressBookModel model)
         {
             var selectdData = from dataTable in dataTable.AsEnumerable().Where((dataTable => dataTable.Field<string>("State") == model.State)) select dataTable;
             foreach (var table in selectdData.AsEnumerable())
@@ -94,7 +98,7 @@ namespace Day35_AdressBookLinq
                 Console.WriteLine("E-mail: " + table.Field<string>("Email"));
             }
         }
-        public void RetrievePersonByUsingCity(AddrssBookModel model)
+        public void RetrievePersonByUsingCity(AddressBookModel model)
         {
             var selectdData = from dataTable in dataTable.AsEnumerable().Where(dataTable => dataTable.Field<string>("City") == model.City) select dataTable;
             foreach (var table in selectdData.AsEnumerable())
@@ -121,10 +125,10 @@ namespace Day35_AdressBookLinq
                                       };
             foreach (var row in countByCityAndState)
             {
-                Console.WriteLine(row.City + "  " + row.State + "--->" + row.Count); 
+                Console.WriteLine(row.City + "  " + row.State + "--->" + row.Count);
             }
         }
-        public void SortContactAlphabeticallyForGivenCity(AddrssBookModel model)
+        public void SortContactAlphabeticallyForGivenCity(AddressBookModel model)
         {
             var records = dataTable.AsEnumerable().Where(x => x.Field<string>("City") == model.City).OrderBy(x => x.Field<string>("First_Name")).ThenBy(x => x.Field<string>("Last_Name"));
             foreach (var table in records)
@@ -152,8 +156,27 @@ namespace Day35_AdressBookLinq
                 Console.WriteLine("AddressBook Type =" + contactlist.BookType + " --> " + "AddressBook_Count = " + contactlist.BookTypeCount);
             }
         }
+        public void RetrieveByUsingBookType(AddressBookModel model)
+        {
+            var selectdData = from dataTable in dataTable.AsEnumerable().Where(dataTable => dataTable.Field<string>("BookType") == model.BookType) select dataTable;
+            foreach (var table in selectdData.AsEnumerable())
+            {
+                Console.WriteLine("\nFirstName: " + table.Field<string>("First_Name"));
+                Console.WriteLine("LastName: " + table.Field<string>("Last_Name"));
+                Console.WriteLine("Address: " + table.Field<string>("Address"));
+                Console.WriteLine("City: " + table.Field<string>("City"));
+                Console.WriteLine("State: " + table.Field<string>("State"));
+                Console.WriteLine("ZipCode: " + table.Field<string>("Zip"));
+                Console.WriteLine("PhoneNumber: " + table.Field<string>("Phone_Number"));
+                Console.WriteLine("E-mail: " + table.Field<string>("Email"));
+                Console.WriteLine("Book_Name: " + table.Field<string>("BookName"));
+                Console.WriteLine("Book_Type: " + table.Field<string>("BookType"));
+            }
+        }
+
     }
 }
+
 
 
 
