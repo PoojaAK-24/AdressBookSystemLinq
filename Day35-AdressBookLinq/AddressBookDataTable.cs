@@ -121,7 +121,7 @@ namespace Day35_AdressBookLinq
                                       };
             foreach (var row in countByCityAndState)
             {
-                Console.WriteLine(row.City + "  " + row.State + "--->" + row.Count);
+                Console.WriteLine(row.City + "  " + row.State + "--->" + row.Count); 
             }
         }
         public void SortContactAlphabeticallyForGivenCity(AddrssBookModel model)
@@ -145,7 +145,7 @@ namespace Day35_AdressBookLinq
                 Select(BookType => new
                 {
                     BookType = BookType.Key,
-                    BookTypeCount = BookType.Count() 
+                    BookTypeCount = BookType.Count()
                 });
             foreach (var contactlist in countData)
             {
@@ -154,8 +154,8 @@ namespace Day35_AdressBookLinq
         }
     }
 }
-    
-   
+
+
 
 
 

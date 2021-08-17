@@ -9,7 +9,7 @@ namespace Day35_AdressBookLinq
             Console.WriteLine("Welcome_To_AddressBookSystem_Linq");
             AddrssBookModel model = new AddrssBookModel();
             AddressBookDataTable dataTable = new AddressBookDataTable();
-            dataTable.CreateTable(model);
+            dataTable.CreateTable(model); 
             while (true)
             {
                 Console.WriteLine("\nEnter Choice  \n1.Add Contact \n2.Display \n3.Edit Contact\n4. DeletContact \n5.ContactFrom_City \n6.ContactsFrom_State\n7.CountByCityOrState\n8.Sort_Contacts\n9.CountBy_AddressBook_Type\n10.Exit ");
@@ -87,6 +87,7 @@ namespace Day35_AdressBookLinq
                         case 9:
                             dataTable.GetCountByAddressBookType();
                             break;
+
                         case 10:
                             Environment.Exit(0);
                             break;
@@ -95,7 +96,7 @@ namespace Day35_AdressBookLinq
                             break;
                     }
                 }
-                catch 
+                catch
                 {
                     Console.WriteLine("please enter integer options only");
                 }
