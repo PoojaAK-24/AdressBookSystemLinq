@@ -139,8 +139,22 @@ namespace Day35_AdressBookLinq
                 Console.WriteLine("E-mail: " + table.Field<string>("Email"));
             }
         }
+        public void GetCountByAddressBookType()
+        {
+            var countData = dataTable.AsEnumerable().GroupBy(BookType => BookType.Field<string>("BookType")).
+                Select(BookType => new
+                {
+                    BookType = BookType.Key,
+                    BookTypeCount = BookType.Count() 
+                });
+            foreach (var contactlist in countData)
+            {
+                Console.WriteLine("AddressBook Type =" + contactlist.BookType + " --> " + "AddressBook_Count = " + contactlist.BookTypeCount);
+            }
+        }
     }
 }
+    
    
 
 
