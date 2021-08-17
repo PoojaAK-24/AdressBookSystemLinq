@@ -12,7 +12,7 @@ namespace Day35_AdressBookLinq
             dataTable.CreateTable(model);
             while (true)
             {
-                Console.WriteLine("\nEnter Choice  \n1.Add Contact \n2.Display \n3.Edit Contact\n4. DeletContact \n5.ContactFrom_City \n6.ContactsFrom_State\n7.Exit ");
+                Console.WriteLine("\nEnter Choice  \n1.Add Contact \n2.Display \n3.Edit Contact\n4. DeletContact \n5.ContactFrom_City \n6.ContactsFrom_State\n7.CountByCityOrState\n8.Exit ");
                 int choice = Convert.ToInt32(Console.ReadLine());
                 try
                 {
@@ -77,6 +77,9 @@ namespace Day35_AdressBookLinq
                             Console.WriteLine("Contacts_From_State");
                             break;
                         case 7:
+                            dataTable.CountByCityAndState();
+                            break;
+                        case 8:
                             Environment.Exit(0);
                             break;
                         default:
@@ -84,7 +87,7 @@ namespace Day35_AdressBookLinq
                             break;
                     }
                 }
-                catch  
+                catch 
                 {
                     Console.WriteLine("please enter integer options only");
                 }
@@ -92,4 +95,5 @@ namespace Day35_AdressBookLinq
         }
     }
 }
+
 
