@@ -10,6 +10,7 @@ namespace Day35_AdressBookLinq
             AddrssBookModel model = new AddrssBookModel();
             AddressBookDataTable dataTable = new AddressBookDataTable();
             dataTable.CreateTable(model);
+            dataTable.Display();
         } 
     }
 }

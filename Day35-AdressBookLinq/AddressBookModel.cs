@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Day35_AdressBookLinq
 {
-    class AddrssBookModel
+    class AddrssBookModel 
     {
         public string First_Name { get; set; }
         public string Last_Name { get; set; }
