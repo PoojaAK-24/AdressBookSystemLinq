@@ -9,10 +9,10 @@ namespace Day35_AdressBookLinq
             Console.WriteLine("Welcome_To_AddressBookSystem_Linq");
             AddrssBookModel model = new AddrssBookModel();
             AddressBookDataTable dataTable = new AddressBookDataTable();
-            dataTable.CreateTable(model); 
+            dataTable.CreateTable(model);
             while (true)
             {
-                Console.WriteLine("\nEnter Choice  \n1.Add Contact \n2.Display \n3.Edit Contact\n4. DeletContact \n5.Exit ");
+                Console.WriteLine("\nEnter Choice  \n1.Add Contact \n2.Display \n3.Edit Contact\n4. DeletContact \n5.ContactFrom_City \n6.ContactsFrom_State\n7.Exit ");
                 int choice = Convert.ToInt32(Console.ReadLine());
                 try
                 {
@@ -65,6 +65,18 @@ namespace Day35_AdressBookLinq
                             dataTable.DeleteContact(model);
                             break;
                         case 5:
+                            Console.WriteLine("Enter the city :");
+                            model.City = Console.ReadLine();
+                            dataTable.RetrievePersonByUsingCity(model);
+                            Console.WriteLine("Contacts_From_City");
+                            break;
+                        case 6:
+                            Console.WriteLine("Enter the State : ");
+                            model.State = Console.ReadLine();
+                            dataTable.RetrievePersonByUsingState(model);
+                            Console.WriteLine("Contacts_From_State");
+                            break;
+                        case 7:
                             Environment.Exit(0);
                             break;
                         default:
@@ -72,7 +84,7 @@ namespace Day35_AdressBookLinq
                             break;
                     }
                 }
-                catch
+                catch  
                 {
                     Console.WriteLine("please enter integer options only");
                 }
@@ -80,3 +92,4 @@ namespace Day35_AdressBookLinq
         }
     }
 }
+
