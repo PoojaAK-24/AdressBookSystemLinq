@@ -8,7 +8,7 @@ namespace Day35_AdressBookLinq
     {
         public string First_Name { get; set; } 
         public string Last_Name { get; set; }
-        public string Address { get; set; }
+        public string Address { get; set; } 
         public string City { get; set; }
         public string State { get; set; }
         public string Zip { get; set; }
