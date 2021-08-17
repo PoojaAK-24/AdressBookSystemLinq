@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Linq;
 using System.Text;
 
 namespace Day35_AdressBookLinq
@@ -35,6 +36,26 @@ namespace Day35_AdressBookLinq
             dataTable.Rows.Add("Ganesh", "Reddy", "vesarpadi", "Chennai", "TamilNadu", "600341", "97456321011", "reddy@gmail.com");
             return dataTable;
         }
+        public void AddContact(AddrssBookModel model) 
+        {
+            dataTable.Rows.Add(model.First_Name, model.Last_Name, model.Address, model.City,
+                model.State, model.Zip, model.Phone_Number, model.Email);
+            Console.WriteLine("Contact Added Succesfully...");
+        }
+        public void EditContact(AddrssBookModel model)
+        {
+            var recordData = dataTable.AsEnumerable().Where(data => data.Field<string>("First_Name") == model.First_Name).First();
+            if (recordData != null)
+            {
+                recordData.SetField("Last_Name", model.Last_Name);
+                recordData.SetField("Address", model.Address);
+                recordData.SetField("City", model.City);
+                recordData.SetField("State", model.State);
+                recordData.SetField("Zip", model.Zip);
+                recordData.SetField("Phone_Number", model.Phone_Number);
+                recordData.SetField("Email", model.Email);
+            }
+        }
         public void Display()
         {
             foreach (var table in dataTable.AsEnumerable())
@@ -48,6 +69,7 @@ namespace Day35_AdressBookLinq
                 Console.WriteLine("PhoneNumber: " + table.Field<string>("Phone_Number"));
                 Console.WriteLine("E-mail: " + table.Field<string>("Email"));
             }
-        } 
+        }
     }
 }
+
